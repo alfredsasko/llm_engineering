@@ -1,0 +1,17 @@
+services:
+  ollama:
+    image: ollama/ollama:latest  # Official Ollama image (CPU-only)
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    restart: unless-stopped
+    entrypoint: ["/ollama-entrypoint.sh"]
+    environment:
+      - OLLAMA_TIMEOUT=60
+    volumes:
+      - ollama:/root/.ollama
+      - ./ollama-entrypoint.sh:/ollama-entrypoint.sh
+
+volumes:
+  ollama:
+    name: ollama
