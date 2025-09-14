@@ -1,4 +1,4 @@
-# Github's default gitignore for Python
+T# Github's default gitignore for Python
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -194,3 +194,5 @@ challenge/
 # WandB local sync data.
 wandb/
 
+.vscode/settings.json
+week2/response_scratch.json
