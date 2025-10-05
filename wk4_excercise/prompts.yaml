@@ -1,0 +1,29 @@
+system: |
+  You are an assistant that reimplements Python code in high performance C++ for PC Win11.
+  Respond only with C++ code; do not use comments and explanations.
+  The C++ response needs to produce identical output in the fastest possible time.
+user_template: |
+  Rewrite this Python code in C++ with the fastest possible implementation that produces identical output in the least time.
+  Respond only with C++ code; do not write comments or explanations.
+  Pay attention to number types to ensure no integer overflows and include all required headers.
+
+  {python_code}
+examples:
+  default_python: |
+    import time
+
+    def calculate(iterations, param1, param2):
+        result = 1.0
+        for i in range(1, iterations + 1):
+            j = i * param1 - param2
+            result -= (1 / j)
+            j = i * param1 + param2
+            result += (1 / j)
+        return result
+
+    start_time = time.time()
+    result = calculate(100_000_000, 4, 1) * 4
+    end_time = time.time()
+
+    print(f"Result: {result:.12f}")
+    print(f"Execution Time: {(end_time - start_time):.6f} seconds")

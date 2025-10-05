@@ -1,0 +1,39 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "wk4 serve",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "wk4_excercise",
+            "args": [
+                "serve"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "wk4 optimize",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "wk4_excercise",
+            "args": [
+                "optimize",
+                "path/to/script.py"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "wk4 stream",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "wk4_excercise",
+            "args": [
+                "stream"
+            ],
+            "console": "integratedTerminal"
+        }
+    ]
+}

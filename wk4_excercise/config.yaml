@@ -1,0 +1,32 @@
+app:
+  title: "Python to C++ Optimizer"
+  default_model: "openai-gpt-4o"
+  temp_dir: "runtime"
+  launch:
+    inbrowser: true
+    debug: false
+  css_path: "assets/app.css"
+models:
+  openai-gpt-4o:
+    display_name: "GPT-4o"
+    provider: "openai"
+    model_id: "gpt-4o"
+    api_key_env: "OPENAI_API_KEY"
+  anthropic-claude-sonnet:
+    display_name: "Claude 3.5 Sonnet"
+    provider: "anthropic"
+    model_id: "claude-3-5-sonnet-20240620"
+    api_key_env: "ANTHROPIC_API_KEY"
+  huggingface-codeqwen:
+    display_name: "CodeQwen 1.5 7B"
+    provider: "huggingface"
+    model_id: "Qwen/CodeQwen1.5-7B-Chat"
+    endpoint: "https://j57z6349r2957ul4.us-east-1.aws.endpoints.huggingface.cloud"
+    api_key_env: "HF_TOKEN"
+    generation_kwargs:
+      max_new_tokens: 3000
+  gemini-2-5-pro:
+    display_name: "Gemini 2.5 Pro"
+    provider: "google-ai"
+    model_id: "models/gemini-2.5-pro"
+    api_key_env: "GOOGLE_API_KEY"
