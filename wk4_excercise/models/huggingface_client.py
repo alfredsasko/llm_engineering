@@ -31,6 +31,8 @@ class HuggingFaceModelClient(BaseModelClient):
         self._generation_kwargs.update(config.generation_kwargs)
 
     def stream_code(self, python_code: str, prompt: PromptTemplate) -> Iterable[str]:  # type: ignore[override]
+        """Yield response fragments from the Hugging Face inference endpoint."""
+
         messages = prompt.build_messages(python_code)
         text_prompt = self._tokenizer.apply_chat_template(
             messages, tokenize=False, add_generation_prompt=True

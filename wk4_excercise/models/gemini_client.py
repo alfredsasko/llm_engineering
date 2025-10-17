@@ -24,10 +24,12 @@ class GeminiModelClient(BaseModelClient):
         self._genai = genai
 
     def stream_code(self, python_code: str, prompt: PromptTemplate) -> Iterable[str]:  # type: ignore[override]
-        messages = prompt.build_messages(python_code)
-        system_text = messages[0]["content"]
-        user_text = messages[1]["content"]
-        model = self._genai.GenerativeModel(
+        """Yield response fragments from the Gemini streaming API."""
+
+       messages = prompt.build_messages(python_code)
+       system_text = messages[0]["content"]
+       user_text = messages[1]["content"]
+       model = self._genai.GenerativeModel(
             model_name=self.config.model_id,
             system_instruction=system_text,
         )

@@ -23,6 +23,8 @@ class AnthropicModelClient(BaseModelClient):
         return self._client
 
     def stream_code(self, python_code: str, prompt: PromptTemplate) -> Iterable[str]:  # type: ignore[override]
+        """Yield response fragments from an Anthropic streaming session."""
+
         messages = prompt.build_messages(python_code)
         system_text = messages[0]["content"]
         user_message = messages[1]["content"]

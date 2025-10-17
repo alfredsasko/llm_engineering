@@ -29,6 +29,8 @@ def _load_env(path: Optional[Path]) -> None:
 
 
 def _build_service() -> CodeOptimizationService:
+    """Instantiate the optimization service with fresh config and prompts."""
+
     config = ConfigLoader().load()
     prompt_set = PromptLoader().load()
     registry = ModelRegistry(config)
@@ -36,6 +38,8 @@ def _build_service() -> CodeOptimizationService:
 
 
 def _optimize_file(python_path: Path, model: Optional[str]) -> str:
+    """Return the optimized C++ translation for the provided Python file."""
+
     service = _build_service()
     source = python_path.read_text(encoding="utf-8")
     target_model = model or service.default_model
@@ -43,6 +47,8 @@ def _optimize_file(python_path: Path, model: Optional[str]) -> str:
 
 
 def _optimize_stream(model: Optional[str]) -> str:
+    """Read Python code from stdin and return the final streamed C++ chunk."""
+
     service = _build_service()
     python_code = sys.stdin.read()
     target_model = model or service.default_model
@@ -53,6 +59,8 @@ def _optimize_stream(model: Optional[str]) -> str:
 
 
 def main(argv: list[str] | None = None) -> int:
+    """Entry point for the command-line interface."""
+
     parser = argparse.ArgumentParser(
         description="Python to C++ optimizer supporting both CLI and Gradio UI modes",
     )

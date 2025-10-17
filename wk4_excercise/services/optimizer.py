@@ -26,9 +26,13 @@ class CodeOptimizationService:
 
     @property
     def default_model(self) -> str:
+        """Return the configured default model identifier."""
+
         return self._config.default_model
 
     def stream_optimized_code(self, python_code: str, model_name: str) -> Generator[str, None, None]:
+        """Yield progressively cleaned C++ code from the selected model."""
+
         client = self._registry.get(model_name)
         aggregated = ""
         for fragment in client.stream_code(python_code, self._prompt_template):
@@ -36,6 +40,8 @@ class CodeOptimizationService:
             yield self._formatter.sanitize(aggregated)
 
     def optimize_once(self, python_code: str, model_name: str) -> str:
+        """Return a single optimized C++ string without streaming."""
+
         client = self._registry.get(model_name)
         aggregated = "".join(client.stream_code(python_code, self._prompt_template))
         return self._formatter.sanitize(aggregated)

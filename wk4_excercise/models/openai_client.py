@@ -23,6 +23,8 @@ class OpenAIModelClient(BaseModelClient):
         return self._client
 
     def stream_code(self, python_code: str, prompt: PromptTemplate) -> Iterable[str]:  # type: ignore[override]
+        """Yield response fragments from the OpenAI chat completions API."""
+
         messages = prompt.build_messages(python_code)
         stream = self._get_client().chat.completions.create(
             model=self.config.model_id,

@@ -13,6 +13,8 @@ from ..services.optimizer import CodeOptimizationService
 
 
 def _load_css(path: Path | None) -> str | None:
+    """Return the CSS contents if the optional path exists."""
+
     if not path:
         return None
     if not path.exists():
@@ -27,6 +29,8 @@ def create_app(
     cpp_executor: CppExecutor,
     default_python: str,
 ) -> gr.Blocks:
+    """Build and return the configured Gradio Blocks interface."""
+
     css = _load_css(config.css_path)
     model_choices: Dict[str, str] = config.model_choices()
 

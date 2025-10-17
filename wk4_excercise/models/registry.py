@@ -15,6 +15,8 @@ class ModelRegistry:
         self._instances: Dict[str, BaseModelClient] = {}
 
     def get(self, model_name: str) -> BaseModelClient:
+        """Return (and cache) a client instance for the requested model."""
+
         if model_name not in self._config.models:
             raise ModelClientError(f"Unknown model '{model_name}' requested")
         if model_name not in self._instances:
@@ -22,6 +24,8 @@ class ModelRegistry:
         return self._instances[model_name]
 
     def list_choices(self) -> Dict[str, str]:
+        """Expose model names mapped to human-readable labels."""
+
         return self._config.model_choices()
 
     def _create_client(self, config: ModelConfig) -> BaseModelClient:

@@ -15,6 +15,8 @@ class CppExecutor:
         self._binary_path = self.workspace / "optimized"
 
     def run(self, code: str) -> str:
+        """Compile the supplied code and return stdout from the compiled binary."""
+
         self._source_path.write_text(code, encoding="utf-8")
         compile_cmd = [
             "g++",
